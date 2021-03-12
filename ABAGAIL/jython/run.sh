@@ -5,25 +5,24 @@
 export CLASSPATH=ABAGAIL.jar:$CLASSPATH
 mkdir -p data/plot logs image
 
-# continuous peaks
 #echo "continuous peaks"
 #jython continuouspeaks.py
 
-# continuous peaks
-#echo "four peaks"
-#jython fourpeaks.py
-
-# continuous peaks
 #echo "knapsack"
 #jython knapsack.py
 
-# continuous peaks
+echo "TSP"
+jython travelingsalesman.py
+
+
+
+
+
+#echo "four peaks"
+#jython fourpeaks.py
+
 #echo "MaxKColor"
 #jython maxKcoloring.py
-
-# continuous peaks
-#echo "TSP"
-#jython travelingsalesman.py
 
 ## four peaks
 #echo "four peaks"
@@ -42,8 +41,8 @@ mkdir -p data/plot logs image
 #jython knapsack.py
 #
 ### abalone test.py
-echo "Running abalone test"
-jython abalone_test.py
+#echo "Running abalone test"
+#jython abalone_test.py
 #
 ## traveling salesman
 #echo "Running traveling salesman test"
