@@ -95,18 +95,6 @@ cf = TravelingSalesmanCrossOver(ef)
 hcp = GenericHillClimbingProblem(ef, odd, nf)
 gap = GenericGeneticAlgorithmProblem(ef, odd, mf, cf)
 
-# rhc = RandomizedHillClimbing(hcp)
-# fit = FixedIterationTrainer(rhc, 200000)
-# train(rhc, "RHC", ef, 200000)
-#
-# sa = SimulatedAnnealing(1E12, .999, hcp)
-# fit = FixedIterationTrainer(sa, 200000)
-# train(sa, "SA", ef, 200000)
-#
-# ga = StandardGeneticAlgorithm(2000, 1500, 250, gap)
-# fit = FixedIterationTrainer(ga, 1000)
-# train(ga, "GA", ef, 2000)
-#
 
 # for mimic we use a sort encoding
 ef = TravelingSalesmanSortEvaluationFunction(points);
@@ -116,20 +104,19 @@ odd = DiscreteUniformDistribution(ranges);
 df = DiscreteDependencyTree(.1, ranges);
 pop = GenericProbabilisticOptimizationProblem(ef, odd, df);
 
-# mimic = MIMIC(500, 100, pop)
-# fit = FixedIterationTrainer(mimic, 1000)
-# train(mimic, "MIMIC", ef, 2000)
+
+
 
 
 #### Experienet 0 - Tuning Algo Prams for RHC ####
-if False:
+if True:
     exp_name = "exp00"
     rhc = RandomizedHillClimbing(hcp)
     fit = FixedIterationTrainer(rhc, 200000)
     train(rhc, exp_name, "RHC", "0", ef, 200000)
 
 #### Experienet 1 - Tuning Algo Prams for SA ####
-if False:
+if True:
     exp_name = "exp01"
 
     sa = SimulatedAnnealing(1E10, .95, hcp)
@@ -198,7 +185,7 @@ if False:
 
 
 #### Experienet 2 - Tuning Algo Prams for Mimic ####
-if False:
+if True:
     exp_name = "exp02"
 
     mimic = MIMIC(500, 25, pop)
@@ -255,78 +242,73 @@ if False:
 
 
 
+ef = TravelingSalesmanRouteEvaluationFunction(points)
+odd = DiscretePermutationDistribution(N)
+nf = SwapNeighbor()
+mf = SwapMutation()
+cf = TravelingSalesmanCrossOver(ef)
+hcp = GenericHillClimbingProblem(ef, odd, nf)
+gap = GenericGeneticAlgorithmProblem(ef, odd, mf, cf)
 
-#### Experienet 3 - Tuning Algo Prams for GA ####
+#### Experienet 4 - Tuning Algo Prams for GA (starting pop) ####
 if True:
-    exp_name = "exp03"
+    exp_name = "exp04"
 
-    ga = StandardGeneticAlgorithm(500, 250, 50, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "0", ef, 20000)
+    ga = StandardGeneticAlgorithm(500, 50, 5, gap)
+    train(ga, exp_name, "GA", "0", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(500, 250, 100, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "1", ef, 20000)
+    ga = StandardGeneticAlgorithm(450, 50, 5, gap)
+    train(ga, exp_name, "GA", "1", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(200, 100, 50, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "2", ef, 20000)
+    ga = StandardGeneticAlgorithm(400, 50, 5, gap)
+    train(ga, exp_name, "GA", "2", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(200, 100, 10, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "3", ef, 20000)
+    ga = StandardGeneticAlgorithm(350, 50, 5, gap)
+    train(ga, exp_name, "GA", "3", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(200, 50, 25, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "4", ef, 20000)
+    ga = StandardGeneticAlgorithm(300, 50, 5, gap)
+    train(ga, exp_name, "GA", "4", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(200, 50, 10, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "5", ef, 20000)
+    ga = StandardGeneticAlgorithm(250, 50, 5, gap)
+    train(ga, exp_name, "GA", "5", ef, 2000)
 
     ga = StandardGeneticAlgorithm(200, 50, 5, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "6", ef, 20000)
+    train(ga, exp_name, "GA", "6", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(100, 50, 25, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "7", ef, 20000)
+    ga = StandardGeneticAlgorithm(150, 50, 5, gap)
+    train(ga, exp_name, "GA", "7", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(100, 25, 10, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "8", ef, 20000)
+    ga = StandardGeneticAlgorithm(100, 50, 5, gap)
+    train(ga, exp_name, "GA", "8", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(100, 25, 5, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "9", ef, 20000)
 
-    ga = StandardGeneticAlgorithm(100, 25, 2, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "10", ef, 20000)
+#### Experienet 5 - Tuning Algo Prams for GA ####
+if True:
+    exp_name = "exp05"
 
-    ga = StandardGeneticAlgorithm(100, 50, 10, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "11", ef, 20000)
+    ga = StandardGeneticAlgorithm(350, 5, 5, gap)
+    train(ga, exp_name, "GA", "0", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(50, 25, 10, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "12", ef, 20000)
+    ga = StandardGeneticAlgorithm(350, 10, 5, gap)
+    train(ga, exp_name, "GA", "1", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(50, 25, 5, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "13", ef, 20000)
+    ga = StandardGeneticAlgorithm(350, 20, 5, gap)
+    train(ga, exp_name, "GA", "2", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(50, 10, 5, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "14", ef, 20000)
+    ga = StandardGeneticAlgorithm(350, 25, 5, gap)
+    train(ga, exp_name, "GA", "3", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(2000, 1500, 250, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "15", ef, 20000)
+    ga = StandardGeneticAlgorithm(350, 35, 5, gap)
+    train(ga, exp_name, "GA", "4", ef, 2000)
 
-    ga = StandardGeneticAlgorithm(1000, 500, 250, gap)
-    fit = FixedIterationTrainer(ga, 1000)
-    train(ga, exp_name, "GA", "16", ef, 20000)
+    ga = StandardGeneticAlgorithm(350, 50, 5, gap)
+    train(ga, exp_name, "GA", "5", ef, 2000)
+
+    ga = StandardGeneticAlgorithm(350, 100, 5, gap)
+    train(ga, exp_name, "GA", "6", ef, 2000)
+
+    ga = StandardGeneticAlgorithm(350, 200, 5, gap)
+    train(ga, exp_name, "GA", "7", ef, 2000)
 
 
 
@@ -335,20 +317,88 @@ if True:
 
 
 
+## Small Problem size
+# set N value.  This is the number of points
+N = 50
+random = Random()
+
+points = [[0 for x in xrange(2)] for x in xrange(N)]
+for i in range(0, len(points)):
+    points[i][0] = random.nextDouble()
+    points[i][1] = random.nextDouble()
+
+ef = TravelingSalesmanRouteEvaluationFunction(points)
+odd = DiscretePermutationDistribution(N)
+nf = SwapNeighbor()
+mf = SwapMutation()
+cf = TravelingSalesmanCrossOver(ef)
+hcp = GenericHillClimbingProblem(ef, odd, nf)
+gap = GenericGeneticAlgorithmProblem(ef, odd, mf, cf)
+
+if True:
+    exp_name = "exp06"
+
+    rhc = RandomizedHillClimbing(hcp)
+    train(rhc, exp_name, "RHC", "0", ef, 200000)
+
+    sa = SimulatedAnnealing(1E10, .95, hcp)
+    train(sa, exp_name, "SA", "0", ef, 200000)
+
+    ga = StandardGeneticAlgorithm(350, 50, 5, gap)
+    train(ga, exp_name, "GA", "0", ef, 2000)
+
+    ef = TravelingSalesmanSortEvaluationFunction(points);
+    fill = [N] * N
+    ranges = array('i', fill)
+    odd = DiscreteUniformDistribution(ranges);
+    df = DiscreteDependencyTree(.1, ranges);
+    pop = GenericProbabilisticOptimizationProblem(ef, odd, df);
+
+    mimic = MIMIC(200, 10, pop)
+    train(mimic, exp_name, "MIMIC", "0", ef, 2000)
 
 
 
 
+## Large Problem size
+# set N value.  This is the number of points
+N = 150
+random = Random()
 
+points = [[0 for x in xrange(2)] for x in xrange(N)]
+for i in range(0, len(points)):
+    points[i][0] = random.nextDouble()
+    points[i][1] = random.nextDouble()
 
+ef = TravelingSalesmanRouteEvaluationFunction(points)
+odd = DiscretePermutationDistribution(N)
+nf = SwapNeighbor()
+mf = SwapMutation()
+cf = TravelingSalesmanCrossOver(ef)
+hcp = GenericHillClimbingProblem(ef, odd, nf)
+gap = GenericGeneticAlgorithmProblem(ef, odd, mf, cf)
 
+if True:
+    exp_name = "exp07"
 
+    rhc = RandomizedHillClimbing(hcp)
+    train(rhc, exp_name, "RHC", "0", ef, 200000)
 
+    sa = SimulatedAnnealing(1E10, .95, hcp)
+    train(sa, exp_name, "SA", "0", ef, 200000)
 
+    ga = StandardGeneticAlgorithm(350, 50, 5, gap)
+    train(ga, exp_name, "GA", "0", ef, 4000)
 
+    ef = TravelingSalesmanSortEvaluationFunction(points);
+    fill = [N] * N
+    ranges = array('i', fill)
+    odd = DiscreteUniformDistribution(ranges);
+    df = DiscreteDependencyTree(.1, ranges);
+    pop = GenericProbabilisticOptimizationProblem(ef, odd, df);
 
-
-
+    mimic = MIMIC(200, 10, pop)
+    train(mimic, exp_name, "MIMIC", "0", ef, 3000)
 
 
 

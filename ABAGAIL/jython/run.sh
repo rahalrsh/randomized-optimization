@@ -5,11 +5,11 @@
 export CLASSPATH=ABAGAIL.jar:$CLASSPATH
 mkdir -p data/plot logs image
 
-#echo "continuous peaks"
-#jython continuouspeaks.py
+echo "continuous peaks"
+jython continuouspeaks.py
 
-#echo "knapsack"
-#jython knapsack.py
+echo "knapsack"
+jython knapsack.py
 
 echo "TSP"
 jython travelingsalesman.py
